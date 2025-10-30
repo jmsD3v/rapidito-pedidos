@@ -4,8 +4,9 @@ import { Cart, CartItem } from "@/components/Cart";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, Settings } from "lucide-react";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-food.jpg";
 import burgerImage from "@/assets/burger.jpg";
 import friesImage from "@/assets/fries.jpg";
@@ -65,6 +66,7 @@ const PRODUCTS = [
 ];
 
 const Index = () => {
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [showCart, setShowCart] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("Todos");
@@ -141,19 +143,29 @@ const Index = () => {
       <nav className="sticky top-0 z-40 bg-background border-b shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h2 className="text-2xl font-bold text-primary">Rápido y Rico</h2>
-          <Button 
-            variant="outline" 
-            className="relative"
-            onClick={() => setShowCart(!showCart)}
-          >
-            <ShoppingCart className="h-5 w-5 mr-2" />
-            Carrito
-            {totalItems > 0 && (
-              <Badge className="ml-2" variant="secondary">
-                {totalItems}
-              </Badge>
-            )}
-          </Button>
+          <div className="flex gap-2">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={() => navigate('/login')}
+              title="Panel de Administración"
+            >
+              <Settings className="h-5 w-5" />
+            </Button>
+            <Button 
+              variant="outline" 
+              className="relative"
+              onClick={() => setShowCart(!showCart)}
+            >
+              <ShoppingCart className="h-5 w-5 mr-2" />
+              Carrito
+              {totalItems > 0 && (
+                <Badge className="ml-2" variant="secondary">
+                  {totalItems}
+                </Badge>
+              )}
+            </Button>
+          </div>
         </div>
       </nav>
 
