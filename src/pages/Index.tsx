@@ -198,16 +198,41 @@ const Index = () => {
       <nav className="sticky top-0 z-40 bg-background border-b shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h2 className="text-2xl font-bold text-primary">Rápido y Rico</h2>
-          <Button 
-            variant="ghost" 
-            size="icon"
-            onClick={() => navigate('/login')}
-            title="Panel de Administración"
-          >
-            <Settings className="h-5 w-5" />
-          </Button>
+          <div className="flex gap-2">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={() => navigate('/login')}
+              title="Panel de Administración"
+            >
+              <Settings className="h-5 w-5" />
+            </Button>
+            <Button 
+              variant="outline" 
+              className="relative"
+              onClick={() => setShowCart(!showCart)}
+            >
+              <ShoppingCart className="h-5 w-5 mr-2" />
+              Carrito
+              {totalItems > 0 && (
+                <Badge className="ml-2" variant="secondary">
+                  {totalItems}
+                </Badge>
+              )}
+            </Button>
+          </div>
         </div>
       </nav>
+
+      {/* Cart Sidebar */}
+      {showCart && (
+        <Cart
+          items={cartItems}
+          onUpdateQuantity={handleUpdateQuantity}
+          onRemoveItem={handleRemoveItem}
+          onCheckout={handleCheckout}
+        />
+      )}
 
       {/* Main Content */}
       <main className="flex-1 container mx-auto px-4 py-8">
