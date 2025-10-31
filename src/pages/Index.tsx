@@ -8,60 +8,115 @@ import { ShoppingCart, Settings } from "lucide-react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-food.jpg";
-import burgerImage from "@/assets/burger.jpg";
-import friesImage from "@/assets/fries.jpg";
-import chickenImage from "@/assets/chicken.jpg";
+import pizzaMargheritaImage from "@/assets/pizza-margherita.jpg";
+import pizzaPepperoniImage from "@/assets/pizza-pepperoni.jpg";
+import pizzaCuatroQuesosImage from "@/assets/pizza-cuatro-quesos.jpg";
+import pizzaNapolitanaImage from "@/assets/pizza-napolitana.jpg";
+import lomitoImage from "@/assets/lomito.jpg";
+import lomitoCompletoImage from "@/assets/lomito-completo.jpg";
+import sandwichMigaImage from "@/assets/sandwich-miga.jpg";
+import carlitoImage from "@/assets/carlito.jpg";
+import empanadaCarneImage from "@/assets/empanada-carne.jpg";
+import empanadaPolloImage from "@/assets/empanada-pollo.jpg";
+import empanadaJamonQuesoImage from "@/assets/empanada-jamon-queso.jpg";
 import drinkImage from "@/assets/drink.jpg";
-import hotdogImage from "@/assets/hotdog.jpg";
 
 const PRODUCTS = [
   {
     id: "1",
-    name: "Hamburguesa Clásica",
-    description: "Jugosa carne con queso, lechuga, tomate y nuestra salsa especial",
-    price: 3500,
-    category: "Hamburguesas",
-    image: burgerImage,
+    name: "Pizza Margherita",
+    description: "Tomates frescos, mozzarella y albahaca sobre masa artesanal",
+    price: 4500,
+    category: "Pizzas",
+    image: pizzaMargheritaImage,
   },
   {
     id: "2",
-    name: "Papas Fritas",
-    description: "Crujientes papas doradas, perfectas para acompañar",
-    price: 1800,
-    category: "Acompañamientos",
-    image: friesImage,
+    name: "Pizza Pepperoni",
+    description: "Generosas rodajas de pepperoni con queso mozzarella fundido",
+    price: 5200,
+    category: "Pizzas",
+    image: pizzaPepperoniImage,
   },
   {
     id: "3",
-    name: "Pollo Frito",
-    description: "Trozos de pollo crujiente con receta secreta",
-    price: 4200,
-    category: "Pollo",
-    image: chickenImage,
+    name: "Pizza Cuatro Quesos",
+    description: "Mozzarella, gorgonzola, parmesano y fontina",
+    price: 5800,
+    category: "Pizzas",
+    image: pizzaCuatroQuesosImage,
   },
   {
     id: "4",
+    name: "Pizza Napolitana",
+    description: "Tradicional con salsa de tomate, mozzarella, anchoas y orégano",
+    price: 5000,
+    category: "Pizzas",
+    image: pizzaNapolitanaImage,
+  },
+  {
+    id: "5",
+    name: "Lomito",
+    description: "Tierna carne de lomo con lechuga, tomate, huevo, jamón y queso",
+    price: 4800,
+    category: "Lomitos",
+    image: lomitoImage,
+  },
+  {
+    id: "6",
+    name: "Lomito Completo",
+    description: "Lomito con todos los ingredientes, una explosión de sabor",
+    price: 6200,
+    category: "Lomitos",
+    image: lomitoCompletoImage,
+  },
+  {
+    id: "7",
+    name: "Sándwiches de Miga Surtidos",
+    description: "Variedad de sándwiches de miga con distintos rellenos (x12 unidades)",
+    price: 3800,
+    category: "Sandwiches",
+    image: sandwichMigaImage,
+  },
+  {
+    id: "8",
+    name: "Carlito",
+    description: "Sándwich enrollado con jamón, queso y vegetales",
+    price: 3200,
+    category: "Sandwiches",
+    image: carlitoImage,
+  },
+  {
+    id: "9",
+    name: "Empanadas de Carne",
+    description: "Empanadas argentinas rellenas de carne jugosa (x6 unidades)",
+    price: 2400,
+    category: "Empanadas",
+    image: empanadaCarneImage,
+  },
+  {
+    id: "10",
+    name: "Empanadas de Pollo",
+    description: "Empanadas con relleno de pollo condimentado (x6 unidades)",
+    price: 2400,
+    category: "Empanadas",
+    image: empanadaPolloImage,
+  },
+  {
+    id: "11",
+    name: "Empanadas de Jamón y Queso",
+    description: "Empanadas con jamón y queso fundido (x6 unidades)",
+    price: 2200,
+    category: "Empanadas",
+    image: empanadaJamonQuesoImage,
+  },
+  {
+    id: "12",
     name: "Bebida Grande",
     description: "Refresco helado de 500ml",
     price: 1200,
     category: "Bebidas",
     image: drinkImage,
-  },
-  {
-    id: "5",
-    name: "Hot Dog Especial",
-    description: "Salchicha premium con todos los aderezos",
-    price: 2800,
-    category: "Hot Dogs",
-    image: hotdogImage,
-  },
-  {
-    id: "6",
-    name: "Hamburguesa Doble",
-    description: "Doble carne, doble queso, doble sabor",
-    price: 5500,
-    category: "Hamburguesas",
-    image: burgerImage,
   },
 ];
 
@@ -143,38 +198,21 @@ const Index = () => {
       <nav className="sticky top-0 z-40 bg-background border-b shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h2 className="text-2xl font-bold text-primary">Rápido y Rico</h2>
-          <div className="flex gap-2">
-            <Button 
-              variant="ghost" 
-              size="icon"
-              onClick={() => navigate('/login')}
-              title="Panel de Administración"
-            >
-              <Settings className="h-5 w-5" />
-            </Button>
-            <Button 
-              variant="outline" 
-              className="relative"
-              onClick={() => setShowCart(!showCart)}
-            >
-              <ShoppingCart className="h-5 w-5 mr-2" />
-              Carrito
-              {totalItems > 0 && (
-                <Badge className="ml-2" variant="secondary">
-                  {totalItems}
-                </Badge>
-              )}
-            </Button>
-          </div>
+          <Button 
+            variant="ghost" 
+            size="icon"
+            onClick={() => navigate('/login')}
+            title="Panel de Administración"
+          >
+            <Settings className="h-5 w-5" />
+          </Button>
         </div>
       </nav>
 
       {/* Main Content */}
       <main className="flex-1 container mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Products Section */}
-          <div className="lg:col-span-2">
-            <h2 className="text-3xl font-bold mb-6">Nuestro Menú</h2>
+        <div className="w-full">
+          <h2 className="text-3xl font-bold mb-6">Nuestro Menú</h2>
             
             {/* Category Filter */}
             <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
@@ -190,50 +228,18 @@ const Index = () => {
               ))}
             </div>
 
-            {/* Products Grid */}
-            <div className="grid sm:grid-cols-2 gap-6">
-              {filteredProducts.map(product => (
-                <ProductCard
-                  key={product.id}
-                  {...product}
-                  onAddToCart={handleAddToCart}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Cart Section (Desktop) */}
-          <div className="hidden lg:block sticky top-24 h-fit">
-            <Cart
-              items={cartItems}
-              onUpdateQuantity={handleUpdateQuantity}
-              onRemoveItem={handleRemoveItem}
-              onCheckout={handleCheckout}
-            />
+          {/* Products Grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredProducts.map(product => (
+              <ProductCard
+                key={product.id}
+                {...product}
+                onAddToCart={handleAddToCart}
+              />
+            ))}
           </div>
         </div>
 
-        {/* Cart Section (Mobile) */}
-        {showCart && (
-          <div className="lg:hidden fixed inset-0 bg-black/50 z-50 flex items-end">
-            <div className="bg-background w-full max-h-[80vh] overflow-y-auto rounded-t-xl">
-              <div className="sticky top-0 bg-background p-4 border-b flex justify-between items-center">
-                <h2 className="text-xl font-bold">Carrito</h2>
-                <Button variant="ghost" onClick={() => setShowCart(false)}>
-                  Cerrar
-                </Button>
-              </div>
-              <div className="p-4">
-                <Cart
-                  items={cartItems}
-                  onUpdateQuantity={handleUpdateQuantity}
-                  onRemoveItem={handleRemoveItem}
-                  onCheckout={handleCheckout}
-                />
-              </div>
-            </div>
-          </div>
-        )}
       </main>
 
       <Footer />
